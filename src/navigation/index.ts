@@ -1,26 +1,39 @@
-import { createStaticNavigation, StaticParamList } from '@react-navigation/native';
+import Header from '@/components/Header';
+import { Monster } from '@/models/monster.model';
+import HomeScreen from '@/screens/HomeScreen';
+import MonsterDetailsScreen from '@/screens/MonsterDetailsScreen';
+import MonstersListScreen from '@/screens/MonstersListScreen';
+import {
+  createStaticNavigation,
+  StaticParamList,
+} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Material } from '~/app/models/material.model';
+import MaterialsListScreen from '~/app/screens/MaterialsListScreen';
 import colors from '~/constants/colors';
-import HomeScreen from '~/features/home/screens/HomeScreen';
-import MonstersScreen from '~/features/monsters/screens/MonstersListScreen';
-import Header from '~/features/shared/components/Header';
 
 const RootStack = createNativeStackNavigator({
   screenOptions: {
     header: Header,
     contentStyle: {
       backgroundColor: colors.background,
-    }
+    },
   },
   screens: {
     Home: {
       screen: HomeScreen,
       options: {
-        headerShown: false
-      }
+        headerShown: false,
+      },
     },
     Monsters: {
-      screen: MonstersScreen,
+      screen: MonstersListScreen,
+    },
+    MonsterDetails: {
+      screen: MonsterDetailsScreen,
+    },
+    Materials: {
+      screen: MaterialsListScreen,
     },
   },
 });
@@ -33,6 +46,9 @@ type RootStackParamList = StaticParamList<typeof RootStack>;
 
 declare global {
   namespace ReactNavigation {
-    interface RootParamList extends RootStackParamList {}
+    interface RootParamList extends RootStackParamList {
+      MonsterDetails: { monster: Monster };
+      MaterialDetails: { material: Material };
+    }
   }
 }

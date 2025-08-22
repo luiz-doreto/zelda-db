@@ -3,16 +3,9 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "~/*": [
-        "./src/*"
-      ],
-      "@/*": [
-        "./src/features/shared/*"
-      ]
+      "~/*": ["./src/*"],
+      "@/*": ["./src/app/*"]
     }
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+  "include": ["**/*.ts", "**/*.tsx"]
 }

@@ -1,7 +1,7 @@
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import { SerializedError } from "@reduxjs/toolkit";
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { SerializedError } from '@reduxjs/toolkit';
 
-type NormalizedError = {
+export type NormalizedError = {
   status?: number | string;
   message?: string;
   raw: FetchBaseQueryError | SerializedError;
@@ -12,14 +12,14 @@ export const normalizeError = (
 ): NormalizedError | undefined => {
   if (!error) return undefined;
 
-  if ("status" in error) {
+  if ('status' in error) {
     // FetchBaseQueryError
     return {
       status: error.status,
       message:
-        typeof error.data === "string"
+        typeof error.data === 'string'
           ? error.data
-          : (error.data as any)?.message ?? "Unknown error",
+          : ((error.data as any)?.message ?? 'Unknown error'),
       raw: error,
     };
   }
@@ -29,4 +29,4 @@ export const normalizeError = (
     message: error.message,
     raw: error,
   };
-}
+};

@@ -5,15 +5,11 @@ export type CustomTextProps = TextProps & {
   type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link';
 };
 
-const CustomText = ({
-  style,
-  type = 'default',
-  ...rest
-}: CustomTextProps) => {
+const CustomText = ({ style, type = 'default', ...rest }: CustomTextProps) => {
   return (
     <Text
       style={[
-        {fontFamily: 'Hylia', color: colors.text},
+        { fontFamily: 'Hylia', color: colors.text },
         type === 'default' ? styles.default : undefined,
         type === 'title' ? styles.title : undefined,
         type === 'defaultSemiBold' ? styles.defaultSemiBold : undefined,
@@ -24,12 +20,13 @@ const CustomText = ({
       {...rest}
     />
   );
-}
+};
 
 const styles = StyleSheet.create({
   default: {
     fontSize: 16,
     lineHeight: 24,
+    fontFamily: 'default',
   },
   defaultSemiBold: {
     fontSize: 16,

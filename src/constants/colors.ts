@@ -5,4 +5,4 @@ export default {
   palette2: '#4297b3',
   palette3: '#d1bc47',
   palette4: '#d68f00',
-}
+};

@@ -1,12 +1,3 @@
-export interface IApiResponse {
-  message: string;
-  status: number;
-}
-
-export interface IMonsters extends IApiResponse {
-  data: Monster[];
-};
-
 export interface Monster {
   category: string;
   common_locations: string[] | null;

@@ -1,15 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { monstersApi } from '~/features/monsters/api/monsterApi';
+import { zeldaApi } from '@/api/zeldaApi';
 
 const store = configureStore({
-    reducer: {
-    [monstersApi.reducerPath]: monstersApi.reducer,
+  reducer: {
+    [zeldaApi.reducerPath]: zeldaApi.reducer,
   },
   // adding the api middleware enables caching, invalidation, polling and other features of `rtk-query`
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(monstersApi.middleware),
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware().concat(zeldaApi.middleware),
 });
 
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof store.getState>;
 
-export default store
+export default store;
