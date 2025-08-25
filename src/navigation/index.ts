@@ -8,7 +8,9 @@ import {
   StaticParamList,
 } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Equipment } from '~/app/models/equipment.model';
 import { Material } from '~/app/models/material.model';
+import EquipmentsListScreen from '~/app/screens/EquipmentsListScreen';
 import MaterialsListScreen from '~/app/screens/MaterialsListScreen';
 import colors from '~/constants/colors';
 
@@ -35,6 +37,9 @@ const RootStack = createNativeStackNavigator({
     Materials: {
       screen: MaterialsListScreen,
     },
+    Equipments: {
+      screen: EquipmentsListScreen,
+    },
   },
 });
 
@@ -49,6 +54,7 @@ declare global {
     interface RootParamList extends RootStackParamList {
       MonsterDetails: { monster: Monster };
       MaterialDetails: { material: Material };
+      EquipmentDetails: { equipment: Equipment };
     }
   }
 }

@@ -1,9 +1,9 @@
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import Logo from '~/assets/images/logo.svg';
 import MenuButton from '@/components/MenuButton';
 import Text from '@/components/Text';
+import Logo from '~/assets/images/logo.svg';
 import colors from '~/constants/colors';
 
 const HomeScreen = () => {
@@ -24,7 +24,11 @@ const HomeScreen = () => {
           color={colors.palette2}
           linkTo="Materials"
         />
-        <MenuButton title="Equipments" color={colors.palette3} />
+        <MenuButton
+          title="Equipments"
+          color={colors.palette3}
+          linkTo="Equipments"
+        />
         <MenuButton title="Creatures" color={colors.palette4} />
       </View>
     </SafeAreaView>
