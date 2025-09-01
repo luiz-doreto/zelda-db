@@ -1,8 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
-import { Provider } from 'react-redux';
 import { useFonts } from 'expo-font';
-import store from '~/store/store';
+import { StatusBar } from 'expo-status-bar';
+import { MotiView } from 'moti';
+import { Provider } from 'react-redux';
 import Navigation from '~/navigation';
+import store from '~/store/store';
 
 export default function App() {
   const [loaded] = useFonts({
@@ -16,8 +17,15 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <StatusBar style="light" />
-      <Navigation />
+      <MotiView
+        from={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ type: 'timing', duration: 500 }}
+        style={{ flex: 1 }}
+      >
+        <StatusBar style="light" />
+        <Navigation />
+      </MotiView>
     </Provider>
   );
 }

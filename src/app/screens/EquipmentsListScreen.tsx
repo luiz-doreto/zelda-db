@@ -1,6 +1,6 @@
-import EquipmentCard from '../components/EquipmentCard';
-import ZeldaList from '../components/ZeldaList';
-import useEquipmentVM from '../viewModels/useEquipmentsVM';
+import EquipmentCard from '@/components/EquipmentCard';
+import ZeldaList from '@/components/ZeldaList';
+import useEquipmentVM from '@/viewModels/useEquipmentsVM';
 
 const EquipmentsListScreen = () => {
   const { data, isLoading, error } = useEquipmentVM();

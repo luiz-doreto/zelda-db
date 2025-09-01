@@ -10,7 +10,9 @@ import {
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Equipment } from '~/app/models/equipment.model';
 import { Material } from '~/app/models/material.model';
+import EquipmentDetailsScreen from '~/app/screens/EquipmentDetailsScreen';
 import EquipmentsListScreen from '~/app/screens/EquipmentsListScreen';
+import MaterialDetailsScreen from '~/app/screens/MaterialDetailsScreen';
 import MaterialsListScreen from '~/app/screens/MaterialsListScreen';
 import colors from '~/constants/colors';
 
@@ -37,8 +39,14 @@ const RootStack = createNativeStackNavigator({
     Materials: {
       screen: MaterialsListScreen,
     },
+    MaterialDetails: {
+      screen: MaterialDetailsScreen,
+    },
     Equipments: {
       screen: EquipmentsListScreen,
+    },
+    EquipmentDetails: {
+      screen: EquipmentDetailsScreen,
     },
   },
 });

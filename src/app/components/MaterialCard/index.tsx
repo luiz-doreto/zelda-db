@@ -1,6 +1,7 @@
 import Text from '@/components/Text';
 import { useNavigation } from '@react-navigation/native';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image } from 'expo-image';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Material } from '~/app/models/material.model';
 import colors from '~/constants/colors';
 
@@ -17,7 +18,15 @@ const MaterialCard = ({ material }: { material: Material }) => {
       onPress={handlePress}
       activeOpacity={0.7}
     >
-      <Image style={styles.image} source={{ uri: material.image }} />
+      <Image
+        key={material.image}
+        source={{ uri: material.image }}
+        style={styles.image}
+        contentFit="cover"
+        placeholder={require('~/assets/images/placeholder.png')}
+        placeholderContentFit="contain"
+        transition={200}
+      />
       <View style={styles.rightContainer}>
         <Text type="subtitle" style={styles.materialName}>
           {material.name}

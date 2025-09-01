@@ -1,10 +1,9 @@
 import { NativeStackHeaderProps } from '@react-navigation/native-stack';
-// import { useRouter, useSegments } from "expo-router";
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import BackButton from '~/assets/images/back.svg';
 import Text from '@/components/Text';
+import BackButton from '~/assets/images/back.svg';
 
 const Header = ({ route, navigation }: NativeStackHeaderProps) => {
   return (

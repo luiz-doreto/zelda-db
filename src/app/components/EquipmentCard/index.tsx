@@ -1,10 +1,10 @@
 import Text from '@/components/Text';
 import { useNavigation } from '@react-navigation/native';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image } from 'expo-image';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Equipment } from '~/app/models/equipment.model';
-
 import colors from '~/constants/colors';
-import EffectBox from '../EffectBox';
+import EffectBoxGroup from '../EffectBoxGroup';
 
 const EquipmentCard = ({ equipment }: { equipment: Equipment }) => {
   const navigation = useNavigation();
@@ -13,25 +13,21 @@ const EquipmentCard = ({ equipment }: { equipment: Equipment }) => {
     navigation.navigate('EquipmentDetails', { equipment });
   };
 
-  const renderEquipEffects = () => {
-    const { attack, defense, effect } = equipment.properties;
-    return (
-      <View style={styles.effectsContainer}>
-        {!!attack && <EffectBox type="attack" value={attack} />}
-        {!!defense && <EffectBox type="defense" value={defense} />}
-        {/* Tears of the Kingdom only */}
-        {!!effect && <EffectBox type="bonus" value={effect} />}
-      </View>
-    );
-  };
-
   return (
     <TouchableOpacity
       style={styles.container}
       onPress={handlePress}
       activeOpacity={0.7}
     >
-      <Image style={styles.image} source={{ uri: equipment.image }} />
+      <Image
+        key={equipment.image}
+        source={{ uri: equipment.image }}
+        style={styles.image}
+        contentFit="cover"
+        placeholder={require('~/assets/images/placeholder.png')}
+        placeholderContentFit="contain"
+        transition={200}
+      />
       <View style={styles.rightContainer}>
         <Text type="subtitle" style={styles.materialName}>
           {equipment.name}
@@ -39,7 +35,7 @@ const EquipmentCard = ({ equipment }: { equipment: Equipment }) => {
         <Text ellipsizeMode="tail" numberOfLines={3}>
           {equipment.description}
         </Text>
-        {renderEquipEffects()}
+        <EffectBoxGroup equipProps={equipment.properties} />
       </View>
     </TouchableOpacity>
   );
@@ -69,11 +65,6 @@ const styles = StyleSheet.create({
   },
   materialName: {
     marginBottom: 6,
-  },
-  effectsContainer: {
-    marginTop: 12,
-    flexDirection: 'row',
-    width: '100%',
   },
 });
 

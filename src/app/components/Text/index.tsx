@@ -1,9 +1,6 @@
-import { StyleSheet, Text, type TextProps } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import colors from '~/constants/colors';
-
-export type CustomTextProps = TextProps & {
-  type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link';
-};
+import { CustomTextProps } from './types';
 
 const CustomText = ({ style, type = 'default', ...rest }: CustomTextProps) => {
   return (

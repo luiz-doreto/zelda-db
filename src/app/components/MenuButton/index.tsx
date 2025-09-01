@@ -1,14 +1,8 @@
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import Text from '@/components/Text';
 import { useNavigation } from '@react-navigation/native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { MenuButtonProps } from './types';
 
-type ScreenNames = keyof ReactNavigation.RootParamList;
-
-type MenuButtonProps = {
-  title: string;
-  color: string;
-  linkTo?: ScreenNames;
-};
 const MenuButton = ({ title, color, linkTo }: MenuButtonProps) => {
   const navigator = useNavigation<any>();
 

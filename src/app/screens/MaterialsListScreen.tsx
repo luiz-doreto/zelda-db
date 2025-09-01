@@ -1,5 +1,5 @@
-import MaterialCard from '../components/MaterialCard';
-import ZeldaList from '../components/ZeldaList';
+import MaterialCard from '@/components/MaterialCard';
+import ZeldaList from '@/components/ZeldaList';
 import useMaterialsViewModel from '../viewModels/useMaterialsVM';
 
 const MaterialsListScreen = () => {

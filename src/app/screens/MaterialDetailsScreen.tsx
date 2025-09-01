@@ -1,27 +1,56 @@
 import Text from '@/components/Text';
+import { Material } from '@/models/material.model';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { Image } from 'expo-image';
 import { ScrollView, StyleSheet, View } from 'react-native';
+import HeartHalf from '~/assets/images/heart-half.svg';
+import HeartQuarter from '~/assets/images/heart-quarter.svg';
+import Heart from '~/assets/images/heart.svg';
 import colors from '~/constants/colors';
-import { Monster } from '../models/monster.model';
 
-type MonsterDetailsRouteProp = RouteProp<
+type MaterialDetailsRouteProp = RouteProp<
   {
-    MonsterDetails: { monster: Monster };
+    MaterialDetails: { material: Material };
   },
-  'MonsterDetails'
+  'MaterialDetails'
 >;
 
-const MonsterDetails = () => {
-  const route = useRoute<MonsterDetailsRouteProp>();
-  const { monster } = route.params;
+const MaterialDetailsScreen = () => {
+  const route = useRoute<MaterialDetailsRouteProp>();
+  const { material } = route.params;
+
+  const getHeartsRecovered = () => {
+    const hearts = material.hearts_recovered;
+
+    const integerPart = Math.floor(hearts);
+    const decimalPart = hearts - integerPart;
+
+    return { integerPart, decimalPart };
+  };
+
+  const renderHeartsRecovered = () => {
+    const { integerPart, decimalPart } = getHeartsRecovered();
+
+    return (
+      <View style={styles.heartsContainer}>
+        {Array.from({ length: integerPart }).map((_, index) => (
+          <Heart width={20} height={20} key={index} />
+        ))}
+        {decimalPart > 0.25 ? (
+          <HeartHalf width={25} height={25} />
+        ) : (
+          <HeartQuarter width={25} height={25} />
+        )}
+      </View>
+    );
+  };
 
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Image
-          key={monster.image}
-          source={{ uri: monster.image }}
+          key={material.image}
+          source={{ uri: material.image }}
           style={styles.image}
           contentFit="cover"
           placeholder={require('~/assets/images/placeholder.png')}
@@ -32,7 +61,7 @@ const MonsterDetails = () => {
         <View style={styles.content}>
           <View style={styles.header}>
             <Text type="title" style={styles.name}>
-              {monster.name}
+              {material.name}
             </Text>
           </View>
 
@@ -40,34 +69,31 @@ const MonsterDetails = () => {
             <Text type="subtitle" style={styles.sectionTitle}>
               Description
             </Text>
-            <Text style={styles.description}>{monster.description}</Text>
+            <Text style={styles.description}>{material.description}</Text>
           </View>
 
-          {monster.common_locations && monster.common_locations.length > 0 && (
+          {material.hearts_recovered > 0 && (
             <View style={styles.section}>
               <Text type="subtitle" style={styles.sectionTitle}>
-                Common Locations
+                Hearts Recovered
               </Text>
-              {monster.common_locations.map((location, index) => (
-                <View key={index} style={styles.itemContainer}>
-                  <Text style={styles.itemText}>• {location}</Text>
-                </View>
-              ))}
+              {renderHeartsRecovered()}
             </View>
           )}
 
-          {monster.drops && monster.drops.length > 0 && (
-            <View style={styles.section}>
-              <Text type="subtitle" style={styles.sectionTitle}>
-                Drops
-              </Text>
-              {monster.drops.map((drop, index) => (
-                <View key={index} style={styles.itemContainer}>
-                  <Text style={styles.itemText}>• {drop}</Text>
-                </View>
-              ))}
-            </View>
-          )}
+          {material.common_locations &&
+            material.common_locations.length > 0 && (
+              <View style={styles.section}>
+                <Text type="subtitle" style={styles.sectionTitle}>
+                  Common Locations
+                </Text>
+                {material.common_locations.map((location, index) => (
+                  <View key={index} style={styles.itemContainer}>
+                    <Text style={styles.itemText}>• {location}</Text>
+                  </View>
+                ))}
+              </View>
+            )}
 
           <View style={styles.section}>
             <Text type="subtitle" style={styles.sectionTitle}>
@@ -75,11 +101,13 @@ const MonsterDetails = () => {
             </Text>
             <View style={styles.infoRow}>
               <Text style={styles.infoLabel}>DLC Content:</Text>
-              <Text style={styles.infoValue}>{monster.dlc ? 'Yes' : 'No'}</Text>
+              <Text style={styles.infoValue}>
+                {material.dlc ? 'Yes' : 'No'}
+              </Text>
             </View>
             <View style={styles.infoRow}>
               <Text style={styles.infoLabel}>ID:</Text>
-              <Text style={styles.infoValue}>{monster.id}</Text>
+              <Text style={styles.infoValue}>{material.id}</Text>
             </View>
           </View>
         </View>
@@ -134,6 +162,11 @@ const styles = StyleSheet.create({
   itemContainer: {
     marginBottom: 8,
   },
+  heartsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
   itemText: {
     color: colors.text,
     lineHeight: 20,
@@ -155,4 +188,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MonsterDetails;
+export default MaterialDetailsScreen;

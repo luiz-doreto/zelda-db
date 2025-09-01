@@ -1,3 +1,4 @@
+import { MotiView } from 'moti';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -9,7 +10,16 @@ import colors from '~/constants/colors';
 const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Logo style={styles.image} height={250} width={300} />
+      <MotiView
+        from={{ opacity: 0 }}
+        animate={{ opacity: 1, scale: [0.5, 1.3, 1] }}
+        transition={{
+          type: 'timing',
+          duration: 1000,
+        }}
+      >
+        <Logo style={styles.image} height={250} width={300} />
+      </MotiView>
       <View style={styles.titleContainer}>
         <Text type="title">Database</Text>
       </View>

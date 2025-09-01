@@ -1,17 +1,9 @@
-import { StyleSheet, View } from 'react-native';
 import Text from '@/components/Text';
 import { FlashList } from '@shopify/flash-list';
+import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { IApiResponse } from '~/app/api/types';
-import { NormalizedError } from '~/utils/rtkQueryErrorNormalizer';
-
-interface ZeldaListProps<T> {
-  data: IApiResponse<T> | undefined;
-  isLoading: boolean;
-  error: NormalizedError | undefined;
-  renderItem: (item: T) => React.ReactElement;
-  emptyMessage?: string;
-}
+import Loading from '../Loading';
+import { ZeldaListProps } from './types';
 
 const ZeldaList = <T extends { id: number }>({
   data,
@@ -20,7 +12,7 @@ const ZeldaList = <T extends { id: number }>({
   renderItem,
   emptyMessage = 'List Empty',
 }: ZeldaListProps<T>) => {
-  if (isLoading) return <Text>Loading...</Text>;
+  if (isLoading) return <Loading />;
   if (error)
     return (
       <Text>
@@ -36,6 +28,7 @@ const ZeldaList = <T extends { id: number }>({
         <FlashList
           contentContainerStyle={styles.listContentContainer}
           data={data?.data}
+          keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => renderItem(item)}
           ItemSeparatorComponent={() => <View style={styles.listSeparator} />}
         />

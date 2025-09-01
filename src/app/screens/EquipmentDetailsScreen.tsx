@@ -1,27 +1,28 @@
+import EffectBoxGroup from '@/components/EffectBoxGroup';
 import Text from '@/components/Text';
+import { Equipment } from '@/models/equipment.model';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { Image } from 'expo-image';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import colors from '~/constants/colors';
-import { Monster } from '../models/monster.model';
 
-type MonsterDetailsRouteProp = RouteProp<
+type EquipmentDetailsRouteProp = RouteProp<
   {
-    MonsterDetails: { monster: Monster };
+    EquipmentDetails: { equipment: Equipment };
   },
-  'MonsterDetails'
+  'EquipmentDetails'
 >;
 
-const MonsterDetails = () => {
-  const route = useRoute<MonsterDetailsRouteProp>();
-  const { monster } = route.params;
+const EquipmentDetailsScreen = () => {
+  const route = useRoute<EquipmentDetailsRouteProp>();
+  const { equipment } = route.params;
 
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Image
-          key={monster.image}
-          source={{ uri: monster.image }}
+          key={equipment.image}
+          source={{ uri: equipment.image }}
           style={styles.image}
           contentFit="cover"
           placeholder={require('~/assets/images/placeholder.png')}
@@ -32,7 +33,7 @@ const MonsterDetails = () => {
         <View style={styles.content}>
           <View style={styles.header}>
             <Text type="title" style={styles.name}>
-              {monster.name}
+              {equipment.name}
             </Text>
           </View>
 
@@ -40,34 +41,29 @@ const MonsterDetails = () => {
             <Text type="subtitle" style={styles.sectionTitle}>
               Description
             </Text>
-            <Text style={styles.description}>{monster.description}</Text>
+            <Text style={styles.description}>{equipment.description}</Text>
           </View>
 
-          {monster.common_locations && monster.common_locations.length > 0 && (
-            <View style={styles.section}>
-              <Text type="subtitle" style={styles.sectionTitle}>
-                Common Locations
-              </Text>
-              {monster.common_locations.map((location, index) => (
-                <View key={index} style={styles.itemContainer}>
-                  <Text style={styles.itemText}>• {location}</Text>
-                </View>
-              ))}
-            </View>
-          )}
+          <View style={styles.section}>
+            <Text type="subtitle" style={styles.sectionTitle}>
+              Stats
+            </Text>
+            <EffectBoxGroup equipProps={equipment.properties} />
+          </View>
 
-          {monster.drops && monster.drops.length > 0 && (
-            <View style={styles.section}>
-              <Text type="subtitle" style={styles.sectionTitle}>
-                Drops
-              </Text>
-              {monster.drops.map((drop, index) => (
-                <View key={index} style={styles.itemContainer}>
-                  <Text style={styles.itemText}>• {drop}</Text>
-                </View>
-              ))}
-            </View>
-          )}
+          {equipment.common_locations &&
+            equipment.common_locations.length > 0 && (
+              <View style={styles.section}>
+                <Text type="subtitle" style={styles.sectionTitle}>
+                  Common Locations
+                </Text>
+                {equipment.common_locations.map((location, index) => (
+                  <View key={index} style={styles.itemContainer}>
+                    <Text style={styles.itemText}>• {location}</Text>
+                  </View>
+                ))}
+              </View>
+            )}
 
           <View style={styles.section}>
             <Text type="subtitle" style={styles.sectionTitle}>
@@ -75,11 +71,13 @@ const MonsterDetails = () => {
             </Text>
             <View style={styles.infoRow}>
               <Text style={styles.infoLabel}>DLC Content:</Text>
-              <Text style={styles.infoValue}>{monster.dlc ? 'Yes' : 'No'}</Text>
+              <Text style={styles.infoValue}>
+                {equipment.dlc ? 'Yes' : 'No'}
+              </Text>
             </View>
             <View style={styles.infoRow}>
               <Text style={styles.infoLabel}>ID:</Text>
-              <Text style={styles.infoValue}>{monster.id}</Text>
+              <Text style={styles.infoValue}>{equipment.id}</Text>
             </View>
           </View>
         </View>
@@ -92,6 +90,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
+  },
+  effectsContainer: {
+    marginTop: 12,
+    flexDirection: 'row',
+    width: '100%',
   },
   image: {
     width: '100%',
@@ -155,4 +158,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MonsterDetails;
+export default EquipmentDetailsScreen;

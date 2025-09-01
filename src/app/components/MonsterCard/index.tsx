@@ -1,7 +1,8 @@
 import Text from '@/components/Text';
 import { Monster } from '@/models/monster.model';
 import { useNavigation } from '@react-navigation/native';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image } from 'expo-image';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import colors from '~/constants/colors';
 
 const MonsterCard = ({ monster }: { monster: Monster }) => {
@@ -17,7 +18,15 @@ const MonsterCard = ({ monster }: { monster: Monster }) => {
       onPress={handlePress}
       activeOpacity={0.7}
     >
-      <Image style={styles.image} source={{ uri: monster.image }} />
+      <Image
+        key={monster.image}
+        source={{ uri: monster.image }}
+        style={styles.image}
+        contentFit="cover"
+        placeholder={require('~/assets/images/placeholder.png')}
+        placeholderContentFit="contain"
+        transition={200}
+      />
       <View style={styles.rightContainer}>
         <Text type="subtitle" style={styles.monsterName}>
           {monster.name}
