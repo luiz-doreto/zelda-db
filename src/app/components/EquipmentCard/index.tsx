@@ -1,10 +1,10 @@
 import Text from '@/components/Text';
 import { useNavigation } from '@react-navigation/native';
-import { Image } from 'expo-image';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Equipment } from '~/app/models/equipment.model';
 import colors from '~/constants/colors';
 import EffectBoxGroup from '../EffectBoxGroup';
+import Image from '../Image';
 
 const EquipmentCard = ({ equipment }: { equipment: Equipment }) => {
   const navigation = useNavigation();
@@ -19,15 +19,7 @@ const EquipmentCard = ({ equipment }: { equipment: Equipment }) => {
       onPress={handlePress}
       activeOpacity={0.7}
     >
-      <Image
-        key={equipment.image}
-        source={{ uri: equipment.image }}
-        style={styles.image}
-        contentFit="cover"
-        placeholder={require('~/assets/images/placeholder.png')}
-        placeholderContentFit="contain"
-        transition={200}
-      />
+      <Image imageUrl={equipment.image} type="small" />
       <View style={styles.rightContainer}>
         <Text type="subtitle" style={styles.materialName}>
           {equipment.name}
@@ -56,12 +48,6 @@ const styles = StyleSheet.create({
     height: 100,
     width: '100%',
     marginHorizontal: 12,
-  },
-  image: {
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10,
-    width: 118,
-    height: 'auto',
   },
   materialName: {
     marginBottom: 6,

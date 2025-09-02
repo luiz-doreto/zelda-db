@@ -1,12 +1,10 @@
 import Text from '@/components/Text';
 import { Material } from '@/models/material.model';
 import { RouteProp, useRoute } from '@react-navigation/native';
-import { Image } from 'expo-image';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import HeartHalf from '~/assets/images/heart-half.svg';
-import HeartQuarter from '~/assets/images/heart-quarter.svg';
-import Heart from '~/assets/images/heart.svg';
 import colors from '~/constants/colors';
+import HeartRecoverBox from '../components/HeartRecoverBox';
+import Image from '../components/Image';
 
 type MaterialDetailsRouteProp = RouteProp<
   {
@@ -19,44 +17,10 @@ const MaterialDetailsScreen = () => {
   const route = useRoute<MaterialDetailsRouteProp>();
   const { material } = route.params;
 
-  const getHeartsRecovered = () => {
-    const hearts = material.hearts_recovered;
-
-    const integerPart = Math.floor(hearts);
-    const decimalPart = hearts - integerPart;
-
-    return { integerPart, decimalPart };
-  };
-
-  const renderHeartsRecovered = () => {
-    const { integerPart, decimalPart } = getHeartsRecovered();
-
-    return (
-      <View style={styles.heartsContainer}>
-        {Array.from({ length: integerPart }).map((_, index) => (
-          <Heart width={20} height={20} key={index} />
-        ))}
-        {decimalPart > 0.25 ? (
-          <HeartHalf width={25} height={25} />
-        ) : (
-          <HeartQuarter width={25} height={25} />
-        )}
-      </View>
-    );
-  };
-
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Image
-          key={material.image}
-          source={{ uri: material.image }}
-          style={styles.image}
-          contentFit="cover"
-          placeholder={require('~/assets/images/placeholder.png')}
-          placeholderContentFit="contain"
-          transition={200}
-        />
+        <Image imageUrl={material.image} type="large" />
 
         <View style={styles.content}>
           <View style={styles.header}>
@@ -77,7 +41,7 @@ const MaterialDetailsScreen = () => {
               <Text type="subtitle" style={styles.sectionTitle}>
                 Hearts Recovered
               </Text>
-              {renderHeartsRecovered()}
+              <HeartRecoverBox heartsNumber={material.hearts_recovered} />
             </View>
           )}
 
@@ -121,11 +85,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background,
   },
-  image: {
-    width: '100%',
-    height: 300,
-    resizeMode: 'cover',
-  },
   content: {
     padding: 20,
   },
@@ -161,11 +120,6 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     marginBottom: 8,
-  },
-  heartsContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
   },
   itemText: {
     color: colors.text,

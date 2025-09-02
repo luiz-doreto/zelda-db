@@ -39,7 +39,11 @@ const HomeScreen = () => {
           color={colors.palette3}
           linkTo="Equipments"
         />
-        <MenuButton title="Creatures" color={colors.palette4} />
+        <MenuButton
+          title="Creatures"
+          color={colors.palette4}
+          linkTo="Creatures"
+        />
       </View>
     </SafeAreaView>
   );

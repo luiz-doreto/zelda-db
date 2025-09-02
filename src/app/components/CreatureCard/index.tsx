@@ -1,15 +1,15 @@
 import Text from '@/components/Text';
-import { Monster } from '@/models/monster.model';
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Creature } from '~/app/models/creature.model';
 import colors from '~/constants/colors';
 import Image from '../Image';
 
-const MonsterCard = ({ monster }: { monster: Monster }) => {
+const CreatureCard = ({ creature }: { creature: Creature }) => {
   const navigation = useNavigation();
 
   const handlePress = () => {
-    navigation.navigate('MonsterDetails', { monster });
+    navigation.navigate('CreatureDetails', { creature });
   };
 
   return (
@@ -18,13 +18,13 @@ const MonsterCard = ({ monster }: { monster: Monster }) => {
       onPress={handlePress}
       activeOpacity={0.7}
     >
-      <Image imageUrl={monster.image} type="small" />
+      <Image imageUrl={creature.image} type="small" />
       <View style={styles.rightContainer}>
-        <Text type="subtitle" style={styles.monsterName}>
-          {monster.name}
+        <Text type="subtitle" style={styles.name}>
+          {creature.name}
         </Text>
         <Text ellipsizeMode="tail" numberOfLines={3}>
-          {monster.description}
+          {creature.description}
         </Text>
       </View>
     </TouchableOpacity>
@@ -33,7 +33,7 @@ const MonsterCard = ({ monster }: { monster: Monster }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.palette1,
+    backgroundColor: colors.palette4,
     flex: 1,
     flexDirection: 'row',
     borderWidth: 1,
@@ -47,9 +47,9 @@ const styles = StyleSheet.create({
     width: '100%',
     marginHorizontal: 12,
   },
-  monsterName: {
+  name: {
     marginBottom: 6,
   },
 });
 
-export default MonsterCard;
+export default CreatureCard;

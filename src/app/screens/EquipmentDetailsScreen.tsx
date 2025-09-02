@@ -2,9 +2,9 @@ import EffectBoxGroup from '@/components/EffectBoxGroup';
 import Text from '@/components/Text';
 import { Equipment } from '@/models/equipment.model';
 import { RouteProp, useRoute } from '@react-navigation/native';
-import { Image } from 'expo-image';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import colors from '~/constants/colors';
+import Image from '../components/Image';
 
 type EquipmentDetailsRouteProp = RouteProp<
   {
@@ -20,15 +20,7 @@ const EquipmentDetailsScreen = () => {
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Image
-          key={equipment.image}
-          source={{ uri: equipment.image }}
-          style={styles.image}
-          contentFit="cover"
-          placeholder={require('~/assets/images/placeholder.png')}
-          placeholderContentFit="contain"
-          transition={200}
-        />
+        <Image imageUrl={equipment.image} type="large" />
 
         <View style={styles.content}>
           <View style={styles.header}>
@@ -95,11 +87,6 @@ const styles = StyleSheet.create({
     marginTop: 12,
     flexDirection: 'row',
     width: '100%',
-  },
-  image: {
-    width: '100%',
-    height: 300,
-    resizeMode: 'cover',
   },
   content: {
     padding: 20,

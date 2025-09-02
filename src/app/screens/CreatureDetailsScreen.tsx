@@ -1,30 +1,31 @@
+import Image from '@/components/Image';
 import Text from '@/components/Text';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import colors from '~/constants/colors';
-import Image from '../components/Image';
-import { Monster } from '../models/monster.model';
+import HeartRecoverBox from '../components/HeartRecoverBox';
+import { Creature } from '../models/creature.model';
 
-type MonsterDetailsRouteProp = RouteProp<
+type CreatureDetailsRouteProp = RouteProp<
   {
-    MonsterDetails: { monster: Monster };
+    CreatureDetails: { creature: Creature };
   },
-  'MonsterDetails'
+  'CreatureDetails'
 >;
 
-const MonsterDetails = () => {
-  const route = useRoute<MonsterDetailsRouteProp>();
-  const { monster } = route.params;
+const CreatureDetails = () => {
+  const route = useRoute<CreatureDetailsRouteProp>();
+  const { creature } = route.params;
 
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Image imageUrl={monster.image} type="large" />
+        <Image imageUrl={creature.image} type="large" />
 
         <View style={styles.content}>
           <View style={styles.header}>
             <Text type="title" style={styles.name}>
-              {monster.name}
+              {creature.name}
             </Text>
           </View>
 
@@ -32,32 +33,51 @@ const MonsterDetails = () => {
             <Text type="subtitle" style={styles.sectionTitle}>
               Description
             </Text>
-            <Text style={styles.description}>{monster.description}</Text>
+            <Text style={styles.description}>{creature.description}</Text>
           </View>
 
-          {monster.common_locations && monster.common_locations.length > 0 && (
+          {creature.common_locations &&
+            creature.common_locations.length > 0 && (
+              <View style={styles.section}>
+                <Text type="subtitle" style={styles.sectionTitle}>
+                  Common Locations
+                </Text>
+                {creature.common_locations.map((location, index) => (
+                  <View key={index} style={styles.itemContainer}>
+                    <Text style={styles.itemText}>• {location}</Text>
+                  </View>
+                ))}
+              </View>
+            )}
+
+          {creature.drops && creature.drops.length > 0 && (
             <View style={styles.section}>
               <Text type="subtitle" style={styles.sectionTitle}>
-                Common Locations
+                Drops
               </Text>
-              {monster.common_locations.map((location, index) => (
+              {creature.drops.map((drop, index) => (
                 <View key={index} style={styles.itemContainer}>
-                  <Text style={styles.itemText}>• {location}</Text>
+                  <Text style={styles.itemText}>• {drop}</Text>
                 </View>
               ))}
             </View>
           )}
 
-          {monster.drops && monster.drops.length > 0 && (
+          {creature.cooking_effect && (
             <View style={styles.section}>
               <Text type="subtitle" style={styles.sectionTitle}>
-                Drops
+                Cooking effect
               </Text>
-              {monster.drops.map((drop, index) => (
-                <View key={index} style={styles.itemContainer}>
-                  <Text style={styles.itemText}>• {drop}</Text>
-                </View>
-              ))}
+              <Text style={styles.itemText}>• {creature.cooking_effect}</Text>
+            </View>
+          )}
+
+          {creature.hearts_recovered && (
+            <View style={styles.section}>
+              <Text type="subtitle" style={styles.sectionTitle}>
+                Hearts Recovered
+              </Text>
+              <HeartRecoverBox heartsNumber={creature.hearts_recovered} />
             </View>
           )}
 
@@ -67,11 +87,13 @@ const MonsterDetails = () => {
             </Text>
             <View style={styles.infoRow}>
               <Text style={styles.infoLabel}>DLC Content:</Text>
-              <Text style={styles.infoValue}>{monster.dlc ? 'Yes' : 'No'}</Text>
+              <Text style={styles.infoValue}>
+                {creature.dlc ? 'Yes' : 'No'}
+              </Text>
             </View>
             <View style={styles.infoRow}>
               <Text style={styles.infoLabel}>ID:</Text>
-              <Text style={styles.infoValue}>{monster.id}</Text>
+              <Text style={styles.infoValue}>{creature.id}</Text>
             </View>
           </View>
         </View>
@@ -142,4 +164,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MonsterDetails;
+export default CreatureDetails;
