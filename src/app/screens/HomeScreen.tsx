@@ -12,7 +12,7 @@ const HomeScreen = () => {
     <SafeAreaView style={styles.container}>
       <MotiView
         from={{ opacity: 0 }}
-        animate={{ opacity: 1, scale: [0.5, 1.3, 1] }}
+        animate={{ opacity: 1, scale: [0.5, 1.1, 1] }}
         transition={{
           type: 'timing',
           duration: 1000,

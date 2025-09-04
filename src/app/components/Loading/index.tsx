@@ -1,19 +1,31 @@
 import Text from '@/components/Text';
 import { MotiText, MotiView, View } from 'moti';
+import { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import LoadingIcon from '~/assets/images/loading.svg';
 
 const Loading = () => {
+  const [flipped, setFlipped] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFlipped(prev => !prev);
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <MotiView
-          from={{ rotate: '0deg' }}
-          animate={{ rotate: '720deg' }}
+          style={styles.iconContainer}
+          animate={{
+            scaleY: flipped ? -1 : 1,
+          }}
           transition={{
-            type: 'timing',
-            loop: true,
-            duration: 3000,
+            type: 'spring',
+            duration: 1,
           }}
         >
           <LoadingIcon height={50} width={50} />
@@ -45,6 +57,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   imageContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 50,
+    height: 50,
+  },
+  iconContainer: {
     alignItems: 'center',
     justifyContent: 'center',
   },

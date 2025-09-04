@@ -25,7 +25,6 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.words": [
-    "moti"
-  ]
+  "cSpell.words": ["moti"],
+  "terminal.integrated.defaultProfile.windows": "Git Bash"
 }
