@@ -1,21 +1,17 @@
 import Text from '@/components/Text';
-import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Creature } from '~/app/models/creature.model';
 import colors from '~/constants/colors';
 import Image from '../Image';
+import useCreatureCardVM from './view.model';
 
 const CreatureCard = ({ creature }: { creature: Creature }) => {
-  const navigation = useNavigation();
-
-  const handlePress = () => {
-    navigation.navigate('CreatureDetails', { creature });
-  };
-
+  const { handleOnPress } = useCreatureCardVM({ creature });
   return (
     <TouchableOpacity
+      testID="creature-card-button"
       style={styles.container}
-      onPress={handlePress}
+      onPress={handleOnPress}
       activeOpacity={0.7}
     >
       <Image imageUrl={creature.image} type="small" />

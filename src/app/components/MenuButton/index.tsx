@@ -1,19 +1,20 @@
 import Text from '@/components/Text';
-import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { MenuButtonProps } from './types';
+import useMenuButtonVM from './view.model';
 
 const MenuButton = ({ title, color, linkTo }: MenuButtonProps) => {
-  const navigator = useNavigation<any>();
+  const { handleOnPress } = useMenuButtonVM();
 
-  const handleOnPress = () => {
-    if (linkTo) {
-      navigator.navigate(linkTo);
-    }
-  };
   return (
-    <TouchableOpacity onPress={handleOnPress}>
-      <View style={[styles.buttonContainer, { backgroundColor: color }]}>
+    <TouchableOpacity
+      testID="menu-button"
+      onPress={() => handleOnPress(linkTo)}
+    >
+      <View
+        testID="menu-button-container"
+        style={[styles.buttonContainer, { backgroundColor: color }]}
+      >
         <Text type="subtitle">{title}</Text>
       </View>
     </TouchableOpacity>
