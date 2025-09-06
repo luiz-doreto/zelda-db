@@ -1,8 +1,8 @@
-import { useGetAllMonstersQuery } from '~/api/zeldaApi';
 import { normalizeError } from '~/utils/rtkQueryErrorNormalizer';
+import { hooksApi, HooksApi } from '~/api/hooks';
 
-const useMonsterViewModel = () => {
-  const { data, isLoading, error } = useGetAllMonstersQuery();
+const useMonsterViewModel = (hooks: HooksApi = hooksApi) => {
+  const { data, isLoading, error } = hooks.useGetAllMonstersQuery();
 
   /**
    * Place all the logic with data.

@@ -1,22 +1,19 @@
-import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import Text from '~/components/Text';
 import colors from '~/constants/colors';
 import { Equipment } from '~/models/equipment.model';
 import EffectBoxGroup from '../EffectBoxGroup';
 import Image from '../Image';
+import useEquipmentCardViewModel from './view.model';
 
 const EquipmentCard = ({ equipment }: { equipment: Equipment }) => {
-  const navigation = useNavigation();
-
-  const handlePress = () => {
-    navigation.navigate('EquipmentDetails', { equipment });
-  };
+  const { handleOnPress } = useEquipmentCardViewModel();
 
   return (
     <TouchableOpacity
+      testID="equipment-card-button"
       style={styles.container}
-      onPress={handlePress}
+      onPress={() => handleOnPress(equipment)}
       activeOpacity={0.7}
     >
       <Image imageUrl={equipment.image} type="small" />
