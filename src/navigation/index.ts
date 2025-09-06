@@ -1,23 +1,23 @@
-import Header from '@/components/Header';
-import { Monster } from '@/models/monster.model';
-import HomeScreen from '@/screens/HomeScreen';
-import MonsterDetailsScreen from '@/screens/MonsterDetailsScreen';
-import MonstersListScreen from '@/screens/MonstersListScreen';
 import {
   createStaticNavigation,
   StaticParamList,
 } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Creature } from '~/app/models/creature.model';
-import { Equipment } from '~/app/models/equipment.model';
-import { Material } from '~/app/models/material.model';
-import CreatureDetails from '~/app/screens/CreatureDetailsScreen';
-import CreaturesListScreen from '~/app/screens/CreaturesListScreen';
-import EquipmentDetailsScreen from '~/app/screens/EquipmentDetailsScreen';
-import EquipmentsListScreen from '~/app/screens/EquipmentsListScreen';
-import MaterialDetailsScreen from '~/app/screens/MaterialDetailsScreen';
-import MaterialsListScreen from '~/app/screens/MaterialsListScreen';
+import Header from '~/components/Header';
 import colors from '~/constants/colors';
+import { Creature } from '~/models/creature.model';
+import { Equipment } from '~/models/equipment.model';
+import { Material } from '~/models/material.model';
+import { Monster } from '~/models/monster.model';
+import CreatureDetails from '~/screens/CreatureDetailsScreen';
+import CreaturesListScreen from '~/screens/CreaturesListScreen';
+import EquipmentDetailsScreen from '~/screens/EquipmentDetailsScreen';
+import EquipmentsListScreen from '~/screens/EquipmentsListScreen';
+import HomeScreen from '~/screens/HomeScreen';
+import MaterialDetailsScreen from '~/screens/MaterialDetailsScreen';
+import MaterialsListScreen from '~/screens/MaterialsListScreen';
+import MonsterDetailsScreen from '~/screens/MonsterDetailsScreen';
+import MonstersListScreen from '~/screens/MonstersListScreen';
 
 const RootStack = createNativeStackNavigator({
   screenOptions: {

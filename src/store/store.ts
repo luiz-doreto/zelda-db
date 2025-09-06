@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { zeldaApi } from '@/api/zeldaApi';
+import { zeldaApi } from '~/api/zeldaApi';
 
 const store = configureStore({
   reducer: {

@@ -20,6 +20,7 @@ An app created to explore recent lib versions and implementations.
 - **Redux Toolkit** with RTK Query for state management and API calls
 - **React Navigation** for screen navigation
 - **Moti** for animations
+- **Jest** for unit testing
 - **Custom Components** with Zelda-themed styling
 
 ## Getting Started
@@ -34,15 +35,14 @@ An app created to explore recent lib versions and implementations.
 
 ```
 src/
-├── app/
-│   ├── api/           # RTK Query API configuration
-│   ├── components/    # Reusable UI components
-│   ├── models/        # TypeScript data models
-│   ├── screens/       # Screen components
-│   └── viewModels/    # Business logic and state management
-├── assets/            # Images, fonts, and static assets
-├── constants/         # App constants and colors
-├── navigation/        # Navigation configuration
+├── api/              # RTK Query API configuration and types
+├── assets/           # Images, fonts, and static assets
+├── components/       # Reusable UI components
+├── constants/        # App constants and colors
+├── jest/             # Jest setup and mocks
+├── models/           # TypeScript data models
+├── navigation/       # Navigation configuration
+├── screens/          # Screen components
 ├── store/            # Redux store setup
 └── utils/            # Utility functions
 ```
@@ -54,6 +54,7 @@ src/
 - `npm run ios` - Run on iOS device/simulator
 - `npm run format` - Format code with Prettier
 - `npm run format:check` - Check code formatting
+- `npm test` - Run Jest unit tests
 
 ## API
 
