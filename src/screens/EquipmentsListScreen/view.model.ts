@@ -1,8 +1,8 @@
-import { useGetAllEquipmentsQuery } from '~/api/zeldaApi';
+import { HooksApi, hooksApi } from '~/api/hooks';
 import { normalizeError } from '~/utils/rtkQueryErrorNormalizer';
 
-const useEquipmentVM = () => {
-  const { data, isLoading, error } = useGetAllEquipmentsQuery();
+const useEquipmentVM = (hooks: HooksApi = hooksApi) => {
+  const { data, isLoading, error } = hooks.useGetAllEquipmentsQuery();
 
   /**
    * Place all the logic with data.

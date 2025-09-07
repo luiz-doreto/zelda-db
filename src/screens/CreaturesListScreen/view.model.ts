@@ -1,8 +1,8 @@
-import { useGetAllCreaturesQuery } from '~/api/zeldaApi';
+import { HooksApi, hooksApi } from '~/api/hooks';
 import { normalizeError } from '~/utils/rtkQueryErrorNormalizer';
 
-const useCreaturesVM = () => {
-  const { data, isLoading, error } = useGetAllCreaturesQuery();
+const useCreaturesVM = (hooks: HooksApi = hooksApi) => {
+  const { data, isLoading, error } = hooks.useGetAllCreaturesQuery();
 
   /**
    * Place all the logic with data.

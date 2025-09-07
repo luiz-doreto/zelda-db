@@ -1,8 +1,8 @@
-import { useGetAllMaterialsQuery } from '~/api/zeldaApi';
+import { HooksApi, hooksApi } from '~/api/hooks';
 import { normalizeError } from '~/utils/rtkQueryErrorNormalizer';
 
-const useMaterialsViewModel = () => {
-  const { data, isLoading, error } = useGetAllMaterialsQuery();
+const useMaterialsViewModel = (hooks: HooksApi = hooksApi) => {
+  const { data, isLoading, error } = hooks.useGetAllMaterialsQuery();
 
   /**
    * Place all the logic with data.

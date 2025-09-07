@@ -1,22 +1,22 @@
 export const mockApiHooks = {
-  useGetAllMonstersQuery: () => ({
+  useGetAllMonstersQuery: jest.fn(() => ({
     data: [{ id: '1', name: 'Lynel' }],
     isLoading: false,
-    error: undefined,
-  }),
-  useGetAllMaterialsQuery: () => ({
+    error: undefined as any,
+  })),
+  useGetAllMaterialsQuery: jest.fn(() => ({
     data: [{ id: '1', name: 'Apple' }],
     isLoading: false,
-    error: undefined,
-  }),
-  useGetAllEquipmentsQuery: () => ({
+    error: undefined as any,
+  })),
+  useGetAllEquipmentsQuery: jest.fn(() => ({
     data: [{ id: '1', name: 'Sword' }],
     isLoading: false,
-    error: undefined,
-  }),
-  useGetAllCreaturesQuery: () => ({
+    error: undefined as any,
+  })),
+  useGetAllCreaturesQuery: jest.fn(() => ({
     data: [{ id: '1', name: 'Horse' }],
     isLoading: false,
-    error: undefined,
-  }),
+    error: undefined as any,
+  })),
 };
