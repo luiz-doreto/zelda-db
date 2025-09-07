@@ -1,5 +1,6 @@
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { ScrollView, StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Image from '~/components/Image';
 import Text from '~/components/Text';
 import colors from '~/constants/colors';
@@ -17,8 +18,11 @@ const MonsterDetails = () => {
   const { monster } = route.params;
 
   return (
-    <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+    <SafeAreaView style={styles.container}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentInsetAdjustmentBehavior="automatic"
+      >
         <Image imageUrl={monster.image} type="large" />
 
         <View style={styles.content}>
@@ -76,7 +80,7 @@ const MonsterDetails = () => {
           </View>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 

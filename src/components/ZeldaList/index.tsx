@@ -27,10 +27,12 @@ const ZeldaList = <T extends { id: number }>({
       ) : (
         <FlashList
           contentContainerStyle={styles.listContentContainer}
+          contentInsetAdjustmentBehavior="automatic"
           data={data?.data}
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => renderItem(item)}
           ItemSeparatorComponent={() => <View style={styles.listSeparator} />}
+          keyboardDismissMode="on-drag"
         />
       )}
     </SafeAreaView>

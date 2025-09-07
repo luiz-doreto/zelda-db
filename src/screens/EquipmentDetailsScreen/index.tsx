@@ -1,5 +1,6 @@
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { ScrollView, StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import EffectBoxGroup from '~/components/EffectBoxGroup';
 import Image from '~/components/Image';
 import Text from '~/components/Text';
@@ -18,8 +19,11 @@ const EquipmentDetailsScreen = () => {
   const { equipment } = route.params;
 
   return (
-    <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+    <SafeAreaView style={styles.container}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentInsetAdjustmentBehavior="automatic"
+      >
         <Image imageUrl={equipment.image} type="large" />
 
         <View style={styles.content}>
@@ -74,7 +78,7 @@ const EquipmentDetailsScreen = () => {
           </View>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 
