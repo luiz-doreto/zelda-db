@@ -28,7 +28,7 @@ const ZeldaList = <T extends { id: number }>({
 
   return (
     <SafeAreaView edges={['bottom', 'left', 'right']} style={{ flex: 1 }}>
-      {data?.data.length === 0 ? (
+      {data?.length === 0 ? (
         <Text>{emptyMessage}</Text>
       ) : (
         <>
@@ -36,7 +36,7 @@ const ZeldaList = <T extends { id: number }>({
             ref={listRef}
             contentContainerStyle={styles.listContentContainer}
             contentInsetAdjustmentBehavior="automatic"
-            data={data?.data}
+            data={data}
             keyExtractor={item => item.id.toString()}
             renderItem={({ item }) => renderItem(item)}
             ItemSeparatorComponent={() => <View style={styles.listSeparator} />}

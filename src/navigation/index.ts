@@ -41,17 +41,6 @@ const RootStack = createNativeStackNavigator({
       fontFamily: 'Hylia',
     },
     headerLargeTitleShadowVisible: false,
-    // SearchBarStyles
-    headerSearchBarOptions: {
-      placeholder: 'Search',
-      placeholderTextColor: '#fff',
-      textColor: colors.text,
-      backgroundColor: colors.background,
-      hideWhenScrolling: true,
-      onSearchButtonPress: event => {
-        console.log('onSearchButtonPress', event.nativeEvent.text);
-      },
-    },
   },
   screens: {
     Home: {
@@ -123,7 +112,7 @@ const Navigation = createStaticNavigation(RootStack);
 export default Navigation;
 
 // type-check the useNavigation hook
-type RootStackParamList = StaticParamList<typeof RootStack>;
+export type RootStackParamList = StaticParamList<typeof RootStack>;
 
 declare global {
   namespace ReactNavigation {
