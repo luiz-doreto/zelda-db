@@ -27,7 +27,7 @@ const ZeldaList = <T extends { id: number }>({
     );
 
   return (
-    <SafeAreaView edges={['bottom', 'left', 'right']} style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
       {data?.length === 0 ? (
         <Text>{emptyMessage}</Text>
       ) : (

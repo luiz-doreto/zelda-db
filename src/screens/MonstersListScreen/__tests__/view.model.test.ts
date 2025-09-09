@@ -15,7 +15,9 @@ describe('useMonsterViewModel', () => {
 
   it('should return a normalized error when the request fails', () => {
     mockApiHooks.useGetAllMonstersQuery.mockImplementationOnce(() => ({
-      data: [],
+      data: {
+        data: [],
+      },
       isLoading: false,
       error: {
         status: 500,
