@@ -1,14 +1,24 @@
 import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { MotiView } from 'moti';
+import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import Navigation from '~/navigation';
 import store from '~/store/store';
 
+SplashScreen.preventAutoHideAsync();
+
 export default function App() {
-  const [loaded] = useFonts({
-    Hylia: require('./src/assets/fonts/HyliaSerifBeta-Regular.otf'),
+  const [loaded, error] = useFonts({
+    'HyliaSerifBeta-Regular': require('./src/assets/fonts/HyliaSerifBeta-Regular.otf'),
   });
+
+  useEffect(() => {
+    if (loaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded, error]);
 
   if (!loaded) {
     // Async font loading only occurs in development.

@@ -23,11 +23,13 @@ const useHeaderSearch = () => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerSearchBarOptions: {
-        placeholder: 'Search',
-        placeholderTextColor: '#fff',
+        placeholder: 'Search...',
+        shouldShowHintSearchIcon: false,
+        hintTextColor: colors.text,
         textColor: colors.text,
         backgroundColor: colors.background,
         hideWhenScrolling: true,
+        headerIconColor: colors.text,
         onChangeText: (
           event: NativeSyntheticEvent<TextInputFocusEventData>
         ) => {

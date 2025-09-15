@@ -3,6 +3,7 @@ import {
   StaticParamList,
 } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Platform } from 'react-native';
 import colors from '~/constants/colors';
 import { Creature } from '~/models/creature.model';
 import { Equipment } from '~/models/equipment.model';
@@ -19,6 +20,29 @@ import MonsterDetailsScreen from '~/screens/MonsterDetailsScreen';
 import MonstersListScreen from '~/screens/MonstersListScreen';
 import HeaderBackButton from '../components/HeaderBackButton';
 
+const headerPropsByOS = Platform.select({
+  ios: {
+    headerTransparent: true,
+    headerStyle: undefined,
+  },
+  android: {
+    headerTransparent: false,
+    headerStyle: {
+      backgroundColor: colors.background,
+    },
+  },
+});
+
+const animationPropsByOS = Platform.select({
+  ios: {
+    animation: 'default' as const,
+  },
+  android: {
+    animation: 'slide_from_right' as const,
+    statusBarAnimation: 'slide' as const,
+  },
+});
+
 const RootStack = createNativeStackNavigator({
   screenOptions: {
     contentStyle: {
@@ -27,20 +51,21 @@ const RootStack = createNativeStackNavigator({
     headerLeft: HeaderBackButton,
     // Common Header Styles
     headerTitleStyle: {
-      fontFamily: 'Hylia',
+      fontFamily: 'HyliaSerifBeta-Regular',
       color: colors.text,
       fontSize: 24,
     },
-    headerTransparent: true,
     headerBlurEffect: 'dark',
     headerShadowVisible: false,
     // Large Header Styles
     headerLargeTitle: true,
     headerLargeTitleStyle: {
       color: colors.text,
-      fontFamily: 'Hylia',
+      fontFamily: 'HyliaSerifBeta-Regular',
     },
     headerLargeTitleShadowVisible: false,
+    ...headerPropsByOS,
+    ...animationPropsByOS,
   },
   screens: {
     Home: {
