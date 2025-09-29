@@ -4,9 +4,11 @@ A React Native mobile application that provides a database of The Legend of Zeld
 
 An app created to explore recent lib versions and implementations.
 
-![image](https://github.com/user-attachments/assets/fce2c373-e5ca-4450-9505-4a9df552e46e)
-![image](https://github.com/user-attachments/assets/e32aac0f-a62b-4d36-895c-77683b9f793a)
-![image](https://github.com/user-attachments/assets/9a41a782-4795-400c-8cd4-e0478d99c781)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/fce2c373-e5ca-4450-9505-4a9df552e46e" width="30%" />
+  <img src="https://github.com/user-attachments/assets/e32aac0f-a62b-4d36-895c-77683b9f793a" width="30%" />
+  <img src="https://github.com/user-attachments/assets/9a41a782-4795-400c-8cd4-e0478d99c781" width="30%" />
+</p>
 
 ## Features
 
